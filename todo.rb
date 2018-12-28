@@ -48,7 +48,18 @@ def update_list(num)
     num = num.to_i
     if num > 0
         selected_task = tasks[num - 1]
-        selected_task.update(status: true)
+        selected_task.update(status: "done")
         todos_list 
     end   
+end
+
+ARGV
+
+case ARGV[0]
+when "add"
+    add_todo(ARGV[1])
+when "delete"
+    delete(ARGV[1])
+when "done"
+    update_list(ARGV[1])
 end
