@@ -5,10 +5,24 @@ require_relative 'config/application'
 
 system "clear"
 
-def add_todo(adding_todo)
-    Task.create()
+# ====================== Add into the List =====================================
+def add_todo(item)
+    Task.create(description: "#{item}")
+    todos_list
 end
 
+# ====================== Delete from the List ==================================
+def delete(num)
+    tasks = Task.all
+    num = num.to_i
+    if num > 0
+        selected_task = tasks[num - 1]
+        selected_task.destroy
+        todos_list 
+    end    
+end
+
+# ======================== Show the To Do List ==================================
 def todos_list
     divider = "======================================================="
     puts "No\tDescription\t\t\t\tDone"
@@ -24,8 +38,17 @@ def todos_list
         else 
             inter_string = "#{task.description}\t\t\t\t"
         end
-
         puts "#{index + 1}\t #{inter_string}\t #{task.status}"
     end
 end
 
+# ======================== Delete from the List ==================================
+def update_list(num)
+    tasks = Task.all 
+    num = num.to_i
+    if num > 0
+        selected_task = tasks[num - 1]
+        selected_task.update(status: true)
+        todos_list 
+    end   
+end
