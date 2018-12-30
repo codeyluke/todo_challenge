@@ -42,7 +42,7 @@ def todos_list
     end
 end
 
-# ======================== Delete from the List ==================================
+# ======================== Completed from the List ==================================
 def update_list(num)
     tasks = Task.all 
     num = num.to_i
@@ -62,4 +62,6 @@ when "delete"
     delete(ARGV[1])
 when "done"
     update_list(ARGV[1])
+when "show"
+    todos_list
 end
